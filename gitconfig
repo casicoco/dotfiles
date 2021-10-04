@@ -49,3 +49,6 @@
 
 [pull]
   rebase = false
+[user]
+	email = lauredegrave@gmail.com
+	name = laure de grave
