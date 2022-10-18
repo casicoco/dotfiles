@@ -4,6 +4,9 @@ alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+alias jn="jupyter notebook"
+alias gcm="git commit -m"
 
 # NOTE: On Q3 2021, Le Wagon decided to change the Web Dev curriculum default text editor
 alias stt="echo 'Launching VS Code instead of Sublime Text... (cf ~/.aliases)' && code ."
+export GOOGLE_APPLICATION_CREDENTIALS=/Users/lauredegrave/code/casicoco/gcp/sage-outrider-328009-2876898e70e0.json
