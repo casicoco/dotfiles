@@ -10,3 +10,8 @@ alias gcm="git commit -m"
 # NOTE: On Q3 2021, Le Wagon decided to change the Web Dev curriculum default text editor
 alias stt="echo 'Launching VS Code instead of Sublime Text... (cf ~/.aliases)' && code ."
 export GOOGLE_APPLICATION_CREDENTIALS=/Users/lauredegrave/code/casicoco/gcp/sage-outrider-328009-2876898e70e0.json
+
+alias ez="exec zsh"
+alias rc="code ~/.zshrc"
+alias ali="code ~/.aliases"
+alias cl="clear"
