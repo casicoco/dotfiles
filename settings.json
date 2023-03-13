@@ -85,5 +85,11 @@
       "%load_ext autoreload",
       "%autoreload 2"
     ],
-    "python.terminal.activateEnvironment": false
+    "python.terminal.activateEnvironment": false,
+    "jupyter.widgetScriptSources": [
+      "jsdelivr.com",
+      "unpkg.com"
+    ],
+    "window.zoomLevel": 2,
+    "tabnine.experimentalAutoImports": true
 }

@@ -81,3 +81,50 @@ if [ -f '/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zs
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
+
+export GOOGLE_APPLICATION_CREDENTIALS=/Users/lauredegrave/code/casicoco/gcp/teachingforlewagon-cdc9b54a7438.json
+
+disk-usage () {
+	echo "Hello $1 ! \nClean XCODE -> xcode-clean\nClean DOCKER -> docker-clean";
+  tput setaf 2;  echo "Xcode caches : It’s safe to delete because Xcode can recreate its caches";  tput sgr0
+  du -sh -c ~/Library/Caches/com.apple.dt.Xcode;
+  tput setaf 2;  echo "Derived data : Cache for Build. It’s safe to empty it.";  tput sgr0
+  du -sh -c ~/Library/Developer/Xcode/DerivedData;
+  tput setaf 2;  echo "Xcode Archives : Build history. It’s safe to empty it.";  tput sgr0
+  du -sh -c ~/Library/Developer/Xcode/Archives;
+  tput setaf 2;  echo "Simulator : Delete only unavailable.";  tput sgr0
+  du -sh -c  ~/Library/Developer/CoreSimulator;
+  tput setaf 2;  echo "\nDocker :";  tput sgr0
+  docker system df;
+  tput setaf 2;  echo "\nCache :";  tput sgr0
+  du -sh -c ~/Library/Caches/;
+  du -sh -c /Library/Caches/;
+  du -sh -c /Système/Library/Caches/ ;
+  tput setaf 2;  echo "\Gradle caches :";  tput sgr0
+  du -sh /Users/lauredegrave/.gradle/caches;
+  tput setaf 2;  echo "\Pyenv :";  tput sgr0
+  du -sh /Users/lauredegrave/.pyenv/versions/3.10.6/envs/;
+}
+
+xcode-clean () {
+  rm -rf ~/Library/Caches/com.apple.dt.Xcode;
+  rm -rf ~/Library/Developer/Xcode/DerivedData;
+  rm -rf ~/Library/Developer/Xcode/Archives;
+  xcrun simctl delete unavailable;
+}
+
+docker-clean () {
+  docker system prune --all --force --volumes;
+}
+
+pod-clean () {
+  du -sh -c "${HOME}/Library/Caches/CocoaPods";
+  if read -q "delete? To delete Press Y/y :"; then
+    rm -rf "${HOME}/Library/Caches/CocoaPods" && echo '''
+  You should then delete the Pods folder and the Podfile.lock
+  rm -rf Pods && rm -rf Podfile.lock
+  Then Reinstall pods: pod update'''
+  else
+    echo " not 'Y' or 'y'. Exiting..."
+  fi
+}
